@@ -1,140 +1,80 @@
-# <img src="https://cloud.githubusercontent.com/assets/873584/26024695/4defcb5e-3809-11e7-9755-fa4d22c45718.png"> [Solo](https://github.com/b3log/solo) [![Build Status](https://img.shields.io/travis/b3log/solo.svg?style=flat)](https://travis-ci.org/b3log/solo) [![Coverage Status](https://img.shields.io/coveralls/b3log/solo.svg?style=flat)](https://coveralls.io/github/b3log/solo?branch=master)  [![AGPLv3](http://img.shields.io/badge/license-AGPLv3-orange.svg?style=flat)](https://www.gnu.org/licenses/agpl-3.0.txt) [![Download](http://img.shields.io/badge/download-14K+-blue.svg?style=flat)](https://pan.baidu.com/s/1dzk7SU) 
+## ZrLog [![Build Status](https://travis-ci.org/94fzb/zrlog.svg?branch=master)](https://travis-ci.org/94fzb/zrlog) [![Apache License](http://img.shields.io/badge/license-apache2-orange.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0) 
 
-<p align="center">
-<a href="https://github.com/b3log/solo/blob/master/README.md"><strong>English</strong></a> | <a href="https://github.com/b3log/solo/blob/master/README_zh_CN.md"><strong>中文</strong></a>
-</p>
+ZrLog是使用Java开发的博客/CMS程序，具有简约，易用，组件化，内存占用低等特点。自带Markdown编辑器，让更多的精力放在写作上，而不是花费大量时间在学习程序的使用上。
 
-* [Introduction](#introduction)
-* [Features](#features)
-* [Screenshots](#screenshots)
-* [Installation](#installation)
-* [Documents](#documents)
-* [Stack](#stack)
-* [Community](#community)
-* [License](#license)
-* [Credits](#credits)
+### 程序主页
 
-## Introduction
+[https://www.zrlog.com](https://www.zrlog.com)
 
-[Solo](https://github.com/b3log/solo) is a Java open-source blogging system that can be set up with **one command** and has 15+ sets of elaborate skins. In addition, Solo has a very active [community](https://hacpai.com). After the article is shared with the community, it can be seen by many people and generates rich interaction.
+### 一图胜千言
 
-The first version of Solo was released in 2010 and has been very mature so far. Please feel free to use :smirk_cat:
+![](http://dl.zrlog.com/assets/screenprint/post-detail.png)
 
-## Features
+![](http://dl.zrlog.com/assets/screenprint/article-edit.png)
 
-You should use every function Solo has deposited so far. We will not add features that only "20%" users use. Only in this way can we keep the blog system pure and light enough to bring a simple user experience.
+### 特性
 
-* Markdown / Emoji
-* [Polymeric classification](https://github.com/b3log/solo/issues/12256) / Tags
-* Custom navigation (pages, links)
-* Drafts
-* Comment/Reply Email Notification
-* Random Articles / Related Articles / Sticky / Update Notification
-* Custom article permanent link
-* Custom site SEO parameters
-* Custom announcement / footer
-* Multiple signature columns
-* Code block highlighting
-* [Multi-skin, multi-end fitting](https://github.com/b3log/solo-skins/tree/master/skin-preview) / [Community skin](https://github.com/b3log/solo-third-skins/tree/master/skin-preview)
-* Multilingual / International
-* Upload local / Qiniu
-* Friendship link management
-* Multi-user writing, team blog
-* [Hexo/Jekyll Import](https://hacpai.com/article/1498490209748)
-* SQL / JSON / Markdown Export
-* Plugins
-* Atom / RSS Feed
-* Sitemap
-* MetaWeblog API
-* CDN Static resource separation 
+1. 提供日志，分类，标签，评论的管理
+2. 支持插件模式 [如何编写一个插件](http://blog.zrlog.com/post/zrlog-plugin-dev)
+3. 高度可定制的主题功能 [如何制作一套主题](https://blog.zrlog.com/post/make-theme-for-zrlog)
+4. 支持第三方评论插件
+5. 提供 `editormd` 主流的富文本编辑器，基本上满足了管理员的编辑需求
+6. 页面静态化，缓存公共数据，访问速度更快
+7. 支持扩展第三方云存储（默认七牛）
+8. 支持数据库定时备份
+9. 在线更新升级<br/>
+10. ...
 
-If there is a new version available, the upgrade process is also very simple. You just need to redeploy the new version without running any additional scripts.
+### 快速开始
 
-## Screenshots
+- 直接通过内嵌入 tomcat 的方式进行启动，找到 `com.zrlog.web.Application` 通过这个 `main()` 进行启动
+- 通过 Maven 命令的方式进行启动（不依赖任何 IDE）
+	- Windows 使用 `bin\mvn-tomcat-run.cmd`
+	- Unix 使用 `sh bin/mvn-tomcat-run.sh`
+- 配置 server 的方式与其它web程序一致（不建议使用，上面的方式出问题的可能性更小）
 
-Edit
+### 程序安装
 
-![5f7258675e0143c79e15ddffabf02147-article.png](https://img.hacpai.com/file/2017/8/5f7258675e0143c79e15ddffabf02147-article.png) 
+* 部署环境前提
+    * 1.jre 版本 >= 1.8
+    * 2.tomcat 版本 >=8，jetty > 8
+    * 3.mysql
 
-Skin
+* 数据初始化
+    * 1.下载 [最新 war](http://dl.zrlog.com/release/zrlog.war) 放在 tomcat 的 webapps 目录 (将zrlog.war改为ROOT.war可避免输入二级目录)
+    * 2.访问 http://host:port/zrlog/install 
+    * 3.填写数据库，管理员信息，完成安装
 
-![ac9a044c18ec4dd4a9356caf698d7fe8-skin.png](https://img.hacpai.com/file/2017/8/ac9a044c18ec4dd4a9356caf698d7fe8-skin.png) 
+### ChangeLog
 
-Front
+[查看完整的ChangeLog](https://www.zrlog.com/changelog?ref=md)
 
-* [Preview and Download](https://hacpai.com/article/1493814851007#toc_h2_11)
+### 示例网站
+ 
+* 网址 [http://demo.zrlog.com](http://demo.zrlog.com) 
+* 管理地址 [admin/login](http://demo.zrlog.com/admin/login) 
+* 用户名 admin 
+* 密码 123456
 
-## Installation
 
-After the JDK environment is ready, [download](https://pan.baidu.com/s/1dzk7SU) the latest Solo package decompression and enter the decompression directory to execute:
+### 获取帮助
 
-* Windows: `java -cp "WEB-INF/lib/*;WEB-INF/classes" org.b3log.solo.Starter`
-* Unix-like: `java -cp "WEB-INF/lib/*:WEB-INF/classes" org.b3log.solo.Starter`
+* QQ群 6399942
+* 邮件 xchun90@163.com
+* 对程序有任何问题，欢迎反馈 [http://blog.zrlog.com/post/feedback](http://blog.zrlog.com/post/feedback)
 
-Run with docker?
+### FAQ
 
-`docker volume create solo_datas && docker run --privileged --name solo --restart=unless-stopped -p 8080:8080 -v solo_datas:/opt/b3log/backup/ -d 88250/solo`
+如何你遇到了一些问题，可以先去这里找下 [FAQ](https://blog.zrlog.com/post/faq-collect)
 
-**See the [Solo User Guide](https://hacpai.com/article/1492881378588) for more details. In addition, if you want to use Solo but do not want to maintain the server yourself, you can purchase our built Solo and [use it directly](https://b3log.org/services/#solo).**
+### 感谢
 
-## Documents
+* [JFinal](http://jfinal.com)
+* [Editor.md](https://pandao.github.io/editor.md/)
+* [SheShui.me](http://sheshui.me)
+* [Gentelella](https://github.com/puikinsh/gentelella)
+* [Jetbrains](https://www.jetbrains.com/)
 
-* [User Guide](https://hacpai.com/article/1492881378588): Installation, configuration, backup, and frequently asked questions
-* [Dev Guide](https://hacpai.com/article/1493822943172): Development environment, project structure, framework description
-* [Skin Dev Guide](https://hacpai.com/article/1493814851007): Development steps, template variables
-* [Plugin Dev Guide](https://docs.google.com/document/pub?id=15H7Q3EBo-44v61Xp_epiYY7vK_gPJLkQaT7T1gkE64w&pli=1): Plugin mechanism, process flow
+### License
 
-## Stack
-
-* Backend framework: In order to reduce the memory footprint of the server as much as possible and try some technical [ideas](https://hacpai.com/article/1403847528022) along the way, we have developed the [Latke](https://github.com/b3log/latke) framework and built on this basis [Solo](https://github.com/b3log/solo), [Sym](https://github.com/b3log/symphony), [XiaoV](https://github.com/b3log/xiaov) and other products. These products will in turn put demands on the framework. This is a mutually beneficial and co-evolutionary benign development process
-* Frontend framework: In order to reduce the complexity, Solo's front-end part only depends on components such as jQuery, editor, and code highlighting. The SPA framework and skin responsive UI of the management background are all realized by us.
-
-**There is no best wheel, only the most suitable wheel.** BTW, if you want to study how to make web wheels, Solo is a good entry.
-
-In addition, in order to ensure the quality of Solo, we have also made a lot of efforts, including:
-
-* Uniform code style
-* Complete javadoc comments
-* Strict branch and defect tracking management
-* Continuously improved test cases, continuous integration
-
-## Community
-
-Everyone can discuss the project through the following two ways to help the project develop:
-
-* Solo [Board](https://hacpai.com/tag/Solo)
-* [Report Issue](https://github.com/b3log/solo/issues/new)
-
-We are very much looking forward to your joining the project. Whether it is feedback or code patches, it is a complete love for Solo :heart:
-
-## License
-
-This software is open sourced under the [GNU Affero General Public License, Version 3](https://www.gnu.org/licenses/agpl-3.0.txt).
-
-## Credits
-
-The birth of Solo was inseparable from the following open source projects:
-
-* [jQuery](https://github.com/jquery/jquery): The most widely used JavaScript tool library
-* [CodeMirror](https://github.com/codemirror/CodeMirror): Markdown editor kernel
-* [SyntaxHighlighter](https://github.com/syntaxhighlighter/syntaxhighlighter): A code highlighting library
-* [Highlight.js](https://github.com/isagalaev/highlight.js): Another code highlighted library
-* [emojify.js](https://github.com/Ranks/emojify.js): Frontend emoji processing library
-* [jsoup](https://github.com/jhy/jsoup): Java HTML parser
-* [flexmark](https://github.com/vsch/flexmark-java): Java markdown processor
-* [marked](https://github.com/chjj/marked): NodeJS markdown processor
-* [Apache Commons](http://commons.apache.org): Java tool library
-* [emoji-java](https://github.com/vdurmont/emoji-java): Java emoji library
-* [FreeMarker](http://freemarker.org): Java template engine
-* [H2](https://github.com/h2database/h2database): Java SQL database
-* [Jetty](https://github.com/eclipse/jetty.project): Lightweight Java Web container
-* [Latke](https://github.com/b3log/latke): Simple and efficient Java Web framework
-* [IntelliJ IDEA](https://www.jetbrains.com/idea): wonderful IDE
-
-----
-
-<p align = "center">
-<strong>Beautiful, simple, stable, fast Java blogging system</strong>
-<br><br>
-<img src="https://cloud.githubusercontent.com/assets/873584/26024667/c031e40a-3808-11e7-9176-f2c9af01bd64.png">
-</p>
+ZrLog is Open Source software released under the [Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0.html).
